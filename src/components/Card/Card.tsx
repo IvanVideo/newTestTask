@@ -6,23 +6,25 @@ interface CardProps {
 }
 
 function Card({ item }: CardProps) {
-    console.log(item, '000')
+
     return (
         <section className='card'>
-            <div>
-                <p>{item.created_by.display_name}</p>
-                {
-                    item.additional_photos.map((item: any, index: any) => (
-                        <img
-                            key={index}
-                            src={item.compressed}
-                        />
-                    ))
-                }
-                <p>{item.name}</p>
+            <div className='card__box'>
+                <div>
+                    <p className='card__created'>created by</p>
+                    <p className='card__after'>{item.created_by.display_name}</p>
+                </div>
+                <p className='card__about'>{item.name}</p>
             </div>
-            <div>
-
+            <div className='card__box_bottom'>
+                <div className='card__bottom'>
+                    <p className='card__ligth-text'>available</p>
+                    <p className='card__place'>1 of 50</p>
+                </div>
+                <div className='card__bottom'>
+                    <p className='card__ligth-text'>price</p>
+                    <p className='card__eth'>0.07 ETH</p>
+                </div>
             </div>
         </section>
     );
