@@ -19,7 +19,7 @@ function Card({ item }: CardProps) {
             <div className='card__box_bottom'>
                 <div className='card__bottom'>
                     <p className='card__ligth-text'>available</p>
-                    <p className='card__place'>1 of 50</p>
+                    <p className={item.quantity_available === 0 ? 'card__place_red' : 'card__place'}>{item.quantity_available} of 50</p>
                 </div>
                 <div className='card__bottom'>
                     <p className='card__ligth-text'>price</p>
