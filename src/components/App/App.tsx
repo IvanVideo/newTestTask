@@ -2,18 +2,89 @@ import React, { useEffect } from 'react';
 import './App.css';
 import api from '../../utils/api';
 import Card from '../Card/Card';
+import styled from "styled-components";
+
+const Container = styled.section`
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0 22px;
+`
+
+const ContainerBox = styled.div`
+margin: 0 22px;
+`
+
+const Content = styled.div`
+position: relative;
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-start;
+`
+
+const Input = styled.input.attrs({
+  type: 'checkbox',
+})`
+margin: 0 5px 0 0;
+&:hover {
+  cursor: pointer;
+}
+`
+
+const Box = styled.div`
+display: flex;
+align-items: center;
+font-size: 10px;
+padding-left: 16px;
+margin-bottom: 22px;
+`
+
+const BoxButton = styled.div`
+padding: 20px 0;
+width: 100%;
+display: flex;
+justify-content: center;
+`
+
+const Button = styled.button`
+width: 100px;
+height: 30px;
+border-radius: 5px;
+background-color: #828282;
+color: white;
+border: none;
+// margin: 50px 50%;
+&:hover {
+  cursor: pointer;
+}
+`
+
+const Title = styled.h1`
+margin: 20px 0 10px 16px;
+font-weight: 700;
+font-size: 32px;
+`
+
+const SubTitle = styled.p`
+margin: 0 0 20px 16px;
+font-weight: 400;
+font-size: 14px;
+color: #828282;
+`
+
 
 function App() {
   const [data, setData] = React.useState<any[]>([]); //массив всех карточек
   const [actualData, setActualData] = React.useState<any[]>([]); //массив карточек, которые есть в наличии
-  const [visibleItem, setVisibleItem] = React.useState(10); //пагинация
-  const [renderStatus, setRenderStatus] = React.useState(false); //статус рендеренга типа карточек
+  const [visibleItem, setVisibleItem] = React.useState(6); //пагинация
+  const [renderStatus, setRenderStatus] = React.useState(false); //статус рендеренга типа(все или только те, что в наличии) карточек
   const [loaderStatus, setLoaderStatus] = React.useState(true); //статус лоадера
 
   const showMorItems = () => {
-    setVisibleItem(visibleItem + 10);
+    setVisibleItem(visibleItem + 4);
   };
 
+  //функция фильтрации, которая запускается в зависимости от значения чекбокса
   const filterItems = (e: any) => {
     if (e.target.checked === true) {
       let newData = data.filter(data => data.quantity_available > 0);
@@ -24,6 +95,7 @@ function App() {
     }
   }
 
+  //делам REST API запрос на получения массива данных при первичном рендеринге
   useEffect(() => {
     api.getData()
       .then((res) => {
@@ -33,19 +105,17 @@ function App() {
   }, [])
 
   return (
-    <div className='app'>
-      <div className='app__container'>
-        <h1>Explore</h1>
-        <p>Buy and sell digital fashion NFT art</p>
-        <div className='app__box'>
-          <input
-            className='app__input'
-            type='checkbox'
+    <Container>
+      <ContainerBox>
+        <Title>Explore</Title>
+        <SubTitle>Buy and sell digital fashion NFT art</SubTitle>
+        <Box>
+          <Input
             onClick={filterItems}
           />
           <label>product in stock</label>
-        </div>
-        <div className='app__cards'>
+        </Box>
+        <Content>
           {
             loaderStatus ?
               <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
@@ -88,17 +158,18 @@ function App() {
                         />
                       ))
                 }
-                <button
-                  className='app__button'
-                  onClick={showMorItems}
-                >
-                  more...
-                </button>
+                <BoxButton>
+                  <Button
+                    onClick={showMorItems}
+                  >
+                    more...
+                  </Button>
+                </BoxButton>
               </>
           }
-        </div>
-      </div>
-    </div>
+        </Content>
+      </ContainerBox>
+    </Container>
   );
 }
 
