@@ -13,6 +13,7 @@
     "@types/react-leaflet": "^2.8.2",
     "@types/styled-components": "^5.1.24",
     "gh-pages": "^3.2.3",
+    "github-pages": "^3.0.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
