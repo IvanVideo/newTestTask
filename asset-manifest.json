@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/IvanVideo/newTestTask/static/css/main.e4366f37.css",
+    "main.js": "/IvanVideo/newTestTask/static/js/main.40ca0d1a.js",
+    "static/media/222.png": "/IvanVideo/newTestTask/static/media/222.38287535ab84e8c38245.png",
+    "index.html": "/IvanVideo/newTestTask/index.html",
+    "main.e4366f37.css.map": "/IvanVideo/newTestTask/static/css/main.e4366f37.css.map",
+    "main.40ca0d1a.js.map": "/IvanVideo/newTestTask/static/js/main.40ca0d1a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e4366f37.css",
+    "static/js/main.40ca0d1a.js"
+  ]
+}
